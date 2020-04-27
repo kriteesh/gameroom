@@ -1,0 +1,17 @@
+{
+    "name": "केन्-केन्",
+    "short_name": "केन्-केन्",
+    "theme_color": "#131313",
+    "background_color": "#3F51B5",
+    "display": "standalone",
+    "orientation": "portrait",
+    "scope": "/",
+    "start_url": "index.html",
+      "icons": [
+      {
+        "src": "assets/icon.png",
+        "type": "image/png",
+        "sizes": "192x192"
+      }
+    ]
+  }

@@ -1,0 +1,136 @@
+html,body{
+    margin :0;
+    width : 100%;
+    height : 100%;
+    overflow : hidden;
+}
+
+.gameLogo{
+    background: url('../assets/iconMain.png') center no-repeat;
+    height: 15vh;
+    background-size: 40vmin;
+    width: 40vw;
+}
+.gameSelect{
+    position : absolute;
+    width : 40vw;
+    height : 80vh;
+    top : 5vh;
+    left : 30vw;
+    display : flex;
+    flex-direction : column;
+    justify-content: space-evenly;
+    cursor : pointer;
+    user-select: none;
+}
+
+.levels{
+    background : #3F51B5;
+    text-align: center;
+    width : 40vw;
+    height : 10vh;
+    color : white;
+    font-family: 'Khand',monospace;
+    font-size : 6vmin;
+    line-height : 10vh;
+    transition : 100ms;
+    border-radius : 1vh;
+}
+
+.levels:hover,.levels:active{
+    transform : scale(1.1);
+    opacity : 0.8;
+}
+
+.container{
+    height: 100%;
+    width: 100%;
+    display : flex;
+    flex-direction : column;
+}
+.header{
+    height: 8vh;
+    font-size: 6vmin;
+    line-height: 8vh;
+    text-align: center;
+    font-family: 'Khand',monospace;
+    background-color: #3F51B5;
+    background-image: radial-gradient(circle,#9c27b069 2px,transparent 2px),linear-gradient(45deg,#E91E63, #3F51B5);
+    background-size: 4px 4px,100%;
+    color: white;
+    user-select: none;
+}
+.game{
+    display : grid;
+    width : 80vmin;
+    height: 80vmin;
+}
+
+.cell{
+    border : 0.1px solid #131313;
+    text-align : center;
+    color : #313131;
+    font-size : 4vmin;
+    user-select: none;
+    transition : 100ms;
+    background : white;
+}
+
+.cell>span{
+    font-size : 4vmin;
+    line-height : inherit;
+}
+
+.clicked{
+    transform : scale(1.08);
+    border : none;
+    box-shadow : 0 0 10px grey;
+}
+
+.pad{
+    --size : 10vmin;
+    width : 90vw;
+    height : 20vmin;
+    display : flex;
+    flex-direction : row;
+    flex-wrap : wrap;
+    margin: 5vh 5vw;
+    justify-content: center;
+}
+
+.buttons{
+    color: white;
+    font-size: 4vmin;
+    width: var(--size);
+    height: var(--size);
+    border-radius: 50%;
+    background: #3F51B5;
+    text-align: center;
+    line-height: var(--size);
+    margin: 2vmin 2vw;
+    transition : 100ms;
+    cursor : pointer;
+    user-select : none;
+    font-family: 'Khand',monospace;
+}
+
+.buttons:hover{
+    opacity: 0.8;
+}
+
+.buttons:active{
+    transform : scale(1.1);
+}
+
+.celltop{
+    height: 50%;
+    font-size: 2.5vmin;
+    text-align: left;
+    padding-left: 0.5vmin;
+    line-height: 3vmin;
+}
+
+.cellette{
+   width : 100%;
+   height : 100%;
+}
