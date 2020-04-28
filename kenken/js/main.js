@@ -1,20 +1,22 @@
 let order = 0;
 
+let difficulty = 5;
+
 body = document.body;
 
 gameSelect = create(body)('div')('gameSelect')({});
 
 gameLogo = create(gameSelect)('div')('gameLogo')({});
 
-gameLevels = [["सरल (6 x 6)",6],["मध्यम (7 x 7)",7],["कठिन (8 x 8)",8],["कठिन ++ (9 x 9)",9]];
+gameLevels = [["सरल (6 x 6)",6,10],["सरल (7 x 7)",7,15],["मध्यम (8 x 8)",8,20],[" मध्यम (9 x 9)",9,25],["मध्यम (6 x 6)",6,5],["मध्यम (7 x 7)",7,10],["कठिन (8 x 8)",8,15],["कठिन (9 x 9)",9,20]];
 
-levels = new Array(4).fill(1).map((x,i)=>{
+levels = new Array(8).fill(1).map((x,i)=>{
     z = create(gameSelect)('div')('levels')({});
     z.innerText = gameLevels[i][0];
     return z;
 });
 
-game = (order) => { 
+game = (order) => (difficulty) => { 
     container = create(body)('div')('container')({});
 
     header = create(container)('div')('header')({});
@@ -70,6 +72,7 @@ game = (order) => {
     grinder = looper(gridChanger(mainGrid));
     solution = transpose(mainGrid).join(",").split(",");
 
+    
     cells.map((x,i)=>{
         x.style.height = x.style.width = x.style.lineHeight = w/order + "px";
         x.onclick = () => { 
@@ -85,6 +88,20 @@ game = (order) => {
             }
         }
     });
+    
+    sprinkled = shuffle(new Array(order*order).fill(1).map((x,i)=>i)).splice(0,difficulty);
+
+    sprinkled.map(y=>{
+        if(cells[y].children.length==0){
+            z = create(cells[y])('div')('cellette')({});
+            z.innerText = solution[y] ;
+        }
+        else{
+            z = create(cells[y])('div')('cellette')({});
+            z.innerText = solution[y] ;
+            z.style.marginTop = "-50%";   
+        }
+    })
 
     padButtons = new Array(order).fill(1).map((x,i)=>(i+1).toString());
 
@@ -196,7 +213,7 @@ game = (order) => {
 
                 swal({
                     title: "ठहरिये",
-                    text: "क्या आपको नई सुडोकु चाहिए ?",
+                    text: "क्या आपको नई केन्-केन् चाहिए ?",
                     icon: "warning",
                     buttons: true,
                     dangerMode: true,
@@ -214,7 +231,8 @@ game = (order) => {
 levels.map((x,i)=>{
     x.onclick = () => {
         levels.map(x=>gameSelect.remove(x));
-        game(gameLevels[i][1]);
+        game(gameLevels[i][1])(gameLevels[i][2]);
+
     }
 })
 
