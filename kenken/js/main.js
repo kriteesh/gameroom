@@ -93,12 +93,14 @@ game = (order) => (difficulty) => {
 
     sprinkled.map(y=>{
         if(cells[y].children.length==0){
-            z = create(cells[y])('div')('cellette')({});
+            z = create(cells[y])('div')('darkCellette')({});
+            cells[y].onclick = false;
             z.innerText = solution[y] ;
         }
         else{
-            z = create(cells[y])('div')('cellette')({});
+            z = create(cells[y])('div')('darkCellette')({});
             z.innerText = solution[y] ;
+            cells[y].onclick = false;
             z.style.marginTop = "-50%";   
         }
     })
@@ -155,7 +157,23 @@ game = (order) => (difficulty) => {
                     buttons: true,
                     dangerMode: true,
                 }).then((willDelete) => {
-                    if (willDelete) document.querySelectorAll('.cellette').forEach(e => e.remove());
+                    if (willDelete){
+                        document.querySelectorAll('.cellette').forEach(e => e.remove());
+                        document.querySelectorAll('.darkCellette').forEach(e => e.remove());
+                        sprinkled.map(y=>{
+                            if(cells[y].children.length==0){
+                                z = create(cells[y])('div')('darkCellette')({});
+                                cells[y].onclick = false;
+                                z.innerText = solution[y] ;
+                            }
+                            else{
+                                z = create(cells[y])('div')('darkCellette')({});
+                                z.innerText = solution[y] ;
+                                cells[y].onclick = false;
+                                z.style.marginTop = "-50%";   
+                            }
+                        })
+                    }
                 });
             
             }
@@ -172,8 +190,14 @@ game = (order) => (difficulty) => {
                 }).then((willDelete) => {
                     if (willDelete) {
                         document.querySelectorAll('.cellette').forEach((e,i) => {
-                            if(e.innerText ==solution[i]) { e.style.background = "#9ec956"; e.style.color = "white";}
-                            else {e.style.background = "#e75903"; e.style.color = "white";}
+                            if(e.innerText == solution[i]) { 
+                                e.style.background = "linear-gradient(45deg, transparent 3px, #4CAF50 4px, transparent 5px)";
+                                e.style.backgroundSize = "6px 6px"; 
+                            }
+                            else {
+                                e.style.background = "linear-gradient(45deg, transparent 3px, #F44336 4px, transparent 5px)";
+                                e.style.backgroundSize = "6px 6px";
+                            }
                         });
                     }
                 });
@@ -193,6 +217,7 @@ game = (order) => (difficulty) => {
                 }).then((willDelete) => {
                     if (willDelete) {
                         document.querySelectorAll('.cellette').forEach(e => e.remove());
+                        document.querySelectorAll('.darkCellette').forEach(e => e.remove());
                         cells.map((y,j)=>{
                             if(y.children.length==0){
                                 z = create(y)('div')('cellette')({});
